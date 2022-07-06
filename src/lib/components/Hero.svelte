@@ -4,6 +4,19 @@
 	export let content: string;
 
 	let links = ['Holidays', 'Birtdays', 'Special Occasions', 'Any Occassion', 'Featured Creators'];
+	let showMobileMenu = false;
+
+	function toggleMobileMenu() {
+		showMobileMenu = !showMobileMenu;
+	}
+
+	function openMobileMenu() {
+		showMobileMenu = false;
+	}
+
+	function closeMobileMenu() {
+		showMobileMenu = false;
+	}
 </script>
 
 <header class="bg-white dark:bg-gray-800">
@@ -20,6 +33,7 @@
 				<!-- Mobile menu button -->
 				<div class="lg:hidden">
 					<button
+						on:click={toggleMobileMenu}
 						type="button"
 						class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
 						aria-label="Toggle menu"
@@ -34,7 +48,10 @@
 			</div>
 
 			<!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-			<div class="flex flex-col mt-2 -mx-2 lg:mt-0 lg:flex-row lg:block">
+			<div
+				class="flex flex-col mt-2 -mx-2 lg:mt-0 lg:flex-row lg:block"
+				class:hidden={!showMobileMenu}
+			>
 				{#each links as link}
 					<a
 						href="#"
